@@ -8,6 +8,25 @@ var snake = null; //全局变量 蛇的实例
 var food = null; //全局变量 食物的实例
 var game = null; //全局变量 游戏的实例
 
+var Score;
+
+function playAudio(){
+  var music = document.getElementById("music");
+  var toggle = document.getElementById("toggle");
+  if(music.paused){
+    music.play();
+    toggle.innerHTML = "pause";
+  }
+  else{
+    music.pause();
+    toggle.innerHTML = "music";
+  }
+}
+
+
+
+
+
     // 方块构造函数：下面参数x y分别表示方块的坐标位置，classname表示不同的样式（蛇头 身体 食物等）
 function Square(x,y,classname){
   //正常像素表示下的坐标   想表示成
@@ -154,6 +173,9 @@ Snake.prototype.getNextPos=function(){
     this.strategies.move.call(this); //this指向实例对象 如果不用call的话this指向strategies，取不到蛇头  
 };
 
+
+
+
 // 处理撞墙后要做的事
 Snake.prototype.strategies = { //给原型身上添加属性
   move:function(format){ //format参数用来决定要不要删除最后一个方块蛇尾（吃食物就不用删），当穿了这个参数后就表示要做的动作为吃
@@ -243,6 +265,7 @@ function createFood(){
 
 }
 // createFood();
+
 
 // 创建游戏逻辑
 function Game(){
